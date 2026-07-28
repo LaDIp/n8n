@@ -2,6 +2,7 @@ services:
   n8n:
     build:
       context: .
+      dockerfile: Dockerfile
 
     container_name: n8n
 
@@ -30,6 +31,7 @@ services:
 
     volumes:
       - n8n_data:/home/node/.n8n
+      - ./downloads:/downloads
 
     restart: unless-stopped
 
