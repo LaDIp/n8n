@@ -30,10 +30,10 @@ services:
       N8N_WEBHOOK_URL: "https://piously-unlimited-elf.cloudpub.ru/"
 
     volumes:
-      - n8n_data:/home/node/.n8n
+      - data:/home/node/.n8n
       - ./downloads:/downloads
 
     restart: unless-stopped
 
 volumes:
-  n8n_data:
+  data:
