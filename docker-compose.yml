@@ -1,7 +1,7 @@
 services:
   n8n:
     build:
-      context: /opt/n8n
+      context: .
 
     container_name: n8n
 
