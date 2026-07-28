@@ -1,0 +1,37 @@
+services:
+  n8n:
+    build:
+      context: /opt/n8n
+
+    container_name: n8n
+
+    ports:
+      - "5678:5678"
+
+    environment:
+      GENERIC_TIMEZONE: "Europe/Moscow"
+      TZ: "Europe/Moscow"
+
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      N8N_MIGRATE_FS_STORAGE_PATH: "true"
+
+      N8N_RUNNERS_GRANT_TOKEN_TTL: "120"
+
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      NODE_FUNCTION_ALLOW_BUILTIN: "*"
+
+      NODE_OPTIONS: "--max-old-space-size=4096"
+
+      N8N_SECURE_COOKIE: "false"
+      N8N_DIAGNOSTICS_ENABLED: "false"
+
+      N8N_PROTOCOL: "https"
+      N8N_WEBHOOK_URL: "https://piously-unlimited-elf.cloudpub.ru/"
+
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
