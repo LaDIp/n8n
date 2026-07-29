@@ -27,7 +27,6 @@ services:
       N8N_DIAGNOSTICS_ENABLED: "false"
 
       N8N_PROTOCOL: "https"
-      N8N_WEBHOOK_URL: "https://piously-unlimited-elf.cloudpub.ru/"
 
     volumes:
       - n8n_data:/home/node/.n8n
