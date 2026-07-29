@@ -16,7 +16,7 @@ FROM n8nio/n8n:latest
 
 USER root
 
-# Python runtime
+# Python
 COPY --from=builder /usr/bin/python3 /usr/bin/python3
 COPY --from=builder /usr/lib/libpython3.14.so.1.0 /usr/lib/
 COPY --from=builder /usr/lib/python3.14 /usr/lib/python3.14
@@ -32,13 +32,11 @@ COPY --from=builder /usr/lib/libav* /usr/lib/
 COPY --from=builder /usr/lib/libsw* /usr/lib/
 COPY --from=builder /usr/lib/libpostproc* /usr/lib/
 
-# yt-dlp wrapper
-RUN printf '#!/bin/sh\nPYTHONPATH=/opt/yt-dlp python3 -m yt_dlp "$@"\n' \
+# wrapper
+RUN printf '#!/bin/sh\nPYTHONPATH=/opt/yt-dlp python3 -m yt_dlp --ffmpeg-location /usr/bin "$@"\n' \
     > /usr/local/bin/yt-dlp && \
     chmod +x /usr/local/bin/yt-dlp
 
-# Check paths
-RUN ln -sf /usr/bin/ffmpeg /usr/local/bin/ffmpeg && \
-    ln -sf /usr/bin/ffprobe /usr/local/bin/ffprobe
+ENV PATH="/usr/bin:/usr/local/bin:${PATH}"
 
 USER node
