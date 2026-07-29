@@ -1,10 +1,15 @@
-FROM n8nio/n8n:latest
+FROM node:22-alpine
 
-USER root
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    ffmpeg && \
+    pip3 install --break-system-packages yt-dlp
 
-# Устанавливаем yt-dlp и зависимости
-RUN wget -O /usr/local/bin/yt-dlp \
-        https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp && \
-    chmod +x /usr/local/bin/yt-dlp
+RUN npm install -g n8n
 
 USER node
+
+EXPOSE 5678
+
+CMD ["n8n"]
