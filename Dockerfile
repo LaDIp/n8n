@@ -8,6 +8,3 @@ RUN wget -O /usr/local/bin/yt-dlp \
     chmod +x /usr/local/bin/yt-dlp
 
 USER node
-
-# Проверка при сборке
-RUN yt-dlp --version
