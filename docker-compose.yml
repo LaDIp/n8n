@@ -34,7 +34,6 @@ services:
 
     volumes:
       - n8n_data:/home/node/.n8n
-      - ./downloads:/root/downloads
       - ./cookies.txt:/root/cookies.txt
 
     restart: unless-stopped
