@@ -24,16 +24,12 @@ COPY --from=builder /usr/lib/python3.14 /usr/lib/python3.14
 # yt-dlp
 COPY --from=builder /opt/yt-dlp /opt/yt-dlp
 
-# ffmpeg
+# ffmpeg package
 COPY --from=builder /usr/bin/ffmpeg /usr/bin/ffmpeg
 COPY --from=builder /usr/bin/ffprobe /usr/bin/ffprobe
+COPY --from=builder /usr/lib /usr/lib
 
-COPY --from=builder /usr/lib/libav* /usr/lib/
-COPY --from=builder /usr/lib/libsw* /usr/lib/
-COPY --from=builder /usr/lib/libpostproc* /usr/lib/
-
-# wrapper
-RUN printf '#!/bin/sh\nPYTHONPATH=/opt/yt-dlp python3 -m yt_dlp --ffmpeg-location /usr/bin "$@"\n' \
+RUN printf '#!/bin/sh\nexec python3 -m yt_dlp --ffmpeg-location=/usr/bin "$@"\n' \
     > /usr/local/bin/yt-dlp && \
     chmod +x /usr/local/bin/yt-dlp
 
