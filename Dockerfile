@@ -2,7 +2,7 @@ FROM alpine:latest AS downloader
 
 RUN apk add --no-cache curl
 
-RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+RUN curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux \
     -o /yt-dlp \
     && chmod +x /yt-dlp
 
