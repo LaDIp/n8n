@@ -30,7 +30,7 @@ services:
       
       N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL}
 
-      NODES_EXCLUDE: []
+      NODES_EXCLUDE: "[]"
 
     volumes:
       - n8n_data:/home/node/.n8n
